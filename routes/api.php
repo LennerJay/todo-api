@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\TodoController;
+use App\Http\Controllers\Api\UserController;
 use App\Models\Todo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::controller(TodoController::class)->group(function(){
     Route::get('/todos','index');
     Route::get('/todos/id','show');
+    Route::post('/todos','store');
     Route::patch('/todos/update','update');
     Route::delete('/todos/delete','destroy');
+});
+
+Route::controller(UserController::class)->group(function(){
+    Route::get('/users','index');
+    Route::post('/users','store');
+    Route::get('/users/id','show');
+    Route::patch('/users/update','update');
+    Route::delete('/users/delete','destroy');
 });

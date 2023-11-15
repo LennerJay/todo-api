@@ -8,12 +8,18 @@ class TodoService
 
     public function getAllTodos()
     {
-        return Todo::select(['id', 'list'])->get();
+        return Todo::lates()->select(['id', 'list'])->get();
     }
 
     public function showTodoById($id)
     {
         return Todo::findOrFail($id);
+    }
+
+    public function createTodo($list)
+    {
+        Todo::create(['list' => $list]);
+        return response()->json(['success' => 'created successfully']);
     }
 
     public function updateTodo($id,$list)
